@@ -1,0 +1,7 @@
+.contenedor{
+    border: 5px solid black;
+    background-color: steelblue;
+    justify-content: flex-end;
+    width: 50%;
+    height: 50%;
+}
