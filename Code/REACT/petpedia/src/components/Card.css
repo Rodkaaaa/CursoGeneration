@@ -1,0 +1,9 @@
+
+
+.casillas {
+  display: flex;
+  width: auto;
+  padding: 20px;
+  margin: 20px;
+  background-color: antiquewhite;
+}
