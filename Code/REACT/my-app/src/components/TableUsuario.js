@@ -11,8 +11,7 @@ const TableUsuarioComponent = ({ usuarios, deleteUser, setUsuarioEditado }) => {
             <th scope="col">#ID</th>
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
-            <th scope="col">Numero</th>
-            <th scope="col">Email</th>
+            <th scope="col">Correo</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -20,17 +19,16 @@ const TableUsuarioComponent = ({ usuarios, deleteUser, setUsuarioEditado }) => {
           {usuarios.map((usuario) => (
             <tr>
               {/* autoincremento el id */}
-              <th scope="row">{i++}</th>
-              <td>{usuario.nombre}</td>
-              <td>{usuario.apellido}</td>
-              <td>{usuario.numero}</td>
-              <td>{usuario.email}</td>
+              <th scope="row">{usuario.id}</th>
+              <td>{usuario.name}</td>
+              <td>{usuario.lastName}</td>
+              <td>{usuario.correo}</td>
               <td>
                 <button
                   type="button"
                   class="btn btn-primary"
                   onClick={() => {
-                    deleteUser(usuario.nombre);
+                    deleteUser(usuario.id);
                   }}
                 >
                   Eliminar

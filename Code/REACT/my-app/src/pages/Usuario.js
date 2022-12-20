@@ -1,10 +1,12 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   FormularioUsuarioComponent,
   TableUsuarioComponent,
   Boton,
 } from "../components";
+import { getAllUser, addUser, updateUser, delUser } from "../service/User";
+
 
 //constante agregasndo usuarios constantemente
 const usuario1 = [
@@ -57,26 +59,50 @@ const UsuarioPage = () => {
   //state para editar usuario
   const [usuarioEditado, setUsuarioEditado] = useState(null);
 
-  const userDelete = (nombreUsuario) => {
+  useEffect(()=>{
+    getUser();
+  },[])
+
+  const getUser = async()=>{
+    const usuarioBD = await getAllUser();
+    setState(usuarioBD)
+  }
+
+/*   const userDelete = (nombreUsuario) => {
     const changeUser = state.filter(
       (usuario) => usuario.nombre !== nombreUsuario
     );
     setState(changeUser);
-  };
+  }; */
 
-  const userAdd = (usuario) => {
+  const userDelete = async(idUsuario) =>{
+    const usuarioDB = await delUser(idUsuario);
+    getUser();
+  }
+
+/*   const userAdd = (usuario) => {
     const addUsuario = [
       //mantenme los usuarios que tengo en state y agrega lo siguiente
       ...state,
       usuario, // 3 puntos es para mantener pero solo funciona como state
     ];
     setState(addUsuario);
-  };
+  }; */
 
-  const userEdit =(usuarioEditado)=>{
+  const userAdd = async(usuarioAgregado)=>{
+    const usuarioDB = await addUser(usuarioAgregado);
+    getUser();
+  }
+
+ /*  const userEdit =(usuarioEditado)=>{
     const editUser = state.map(usuario => (usuario.nombre === usuarioEditado.nombre ? usuarioEditado : usuario))
 
     setState(editUser);
+  } */
+
+  const userEdit = async(updateeUser) => {
+    const usuarioDB = await updateUser(updateeUser)
+    getUser();
   }
 
 

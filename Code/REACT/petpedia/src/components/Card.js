@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
-import data from "./data.json";
+/* import TextField from "@mui/material/TextField"; */
+/* import data from "./data.json"; */
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -9,40 +9,17 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import "./Card.css";
 
-const CardPostComponent = (props) => {
-  const [inputText, setInputText] = useState("");
-  let inputHandler = (e) => {
-    //convert input text to lower case
-    var lowerCase = e.target.value.toLowerCase();
-    setInputText(lowerCase);
-  };
-
-  const filteredData = data.filter((el) => {
-    if (data.titulo === '') {
-        return el;
-    } else {
-        return el.titulo.toLowerCase().includes(data.titulo)
-    }
-})
+const CardPostComponent = ({Posts}) => {
   return (
-    <div class="container">
+    <div class="grid">
       <div class="row casillas">
-        <div className="search">
-          <TextField
-            id="outlined-basic"
-            onChange={inputHandler}
-            variant="outlined"
-            fullWidth
-            label="Search"
-            value={inputText}
-          />
-        </div>
-        {data.map((post) => (
+        {Posts.map((post) => (
+          <div class="col">
           <Card sx={{ maxWidth: 345 }}>
             <CardMedia
               component="img"
               height="140"
-              image={post.img_url}
+              image={post.url}
               alt="no_image"
             />
             <CardContent>
@@ -50,7 +27,7 @@ const CardPostComponent = (props) => {
                 {post.titulo}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                {post.descripcion}
+                {post.contenido}
               </Typography>
             </CardContent>
             <CardActions>
@@ -58,9 +35,9 @@ const CardPostComponent = (props) => {
               <Button size="small">Leer mas</Button>
             </CardActions>
           </Card>
+          </div>
         ))}
       </div>
-       
     </div>
   );
 };

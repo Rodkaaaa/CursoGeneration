@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./fomulary.css";
 
 const initialUsuario = {
-  nombre: "",
-  apellido: "",
-  numero: "",
-  email: "",
+  id: "",
+  name: "",
+  lastName: "",
+  correo: "",
 };
 
 const FormularioUsuarioComponent = ({
@@ -15,7 +15,7 @@ const FormularioUsuarioComponent = ({
   userEdit,
 }) => {
   const [usuario, setUsuario] = useState(initialUsuario);
-  const { nombre, apellido, numero, email } = usuario;
+  const { id, name, lastName, correo } = usuario;
 
   useEffect(() => {
     //el hook useEffect siemrpe esta pendiente de si la variable que tiene dentro de sus corchetes cambia
@@ -25,10 +25,10 @@ const FormularioUsuarioComponent = ({
       setUsuario(usuarioEditado);
     } else {
       setUsuario({
-        nombre: "",
-        apellido: "",
-        numero: "",
-        email: "",
+        id: "",
+        name: "",
+        lastName: "",
+        correo: "",
       });
     }
   }, [usuarioEditado]);
@@ -50,6 +50,21 @@ const FormularioUsuarioComponent = ({
         <h1>Agregar Usuario</h1>
       )}
       <form>
+      <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">
+            #ID
+          </label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            name="id"
+            value={id}
+            onChange={handleInputChange}
+            disabled
+            aria-describedby="emailHelp"
+          />
+        </div>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">
             Nombre
@@ -58,8 +73,8 @@ const FormularioUsuarioComponent = ({
             type="text"
             class="form-control"
             id="exampleInputEmail1"
-            name="nombre"
-            value={nombre}
+            name="name"
+            value={name}
             onChange={handleInputChange}
             aria-describedby="emailHelp"
           />
@@ -72,22 +87,8 @@ const FormularioUsuarioComponent = ({
             type="email"
             class="form-control"
             id="exampleInputEmail1"
-            name="apellido"
-            value={apellido}
-            onChange={handleInputChange}
-            aria-describedby="emailHelp"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">
-            Numero
-          </label>
-          <input
-            type="email"
-            class="form-control"
-            id="exampleInputEmail1"
-            name="numero"
-            value={numero}
+            name="lastName"
+            value={lastName}
             onChange={handleInputChange}
             aria-describedby="emailHelp"
           />
@@ -100,8 +101,8 @@ const FormularioUsuarioComponent = ({
             type="email"
             class="form-control"
             id="exampleInputEmail1"
-            name="email"
-            value={email}
+            name="correo"
+            value={correo}
             onChange={handleInputChange}
             aria-describedby="emailHelp"
           />

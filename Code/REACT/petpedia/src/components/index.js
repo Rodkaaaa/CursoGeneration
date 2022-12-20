@@ -1,3 +1,3 @@
 import CardPostComponent from "./Card"
-
-export {CardPostComponent}
+import search from "./search"
+export {CardPostComponent, search}
