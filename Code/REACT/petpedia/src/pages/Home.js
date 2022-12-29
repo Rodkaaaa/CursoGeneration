@@ -1,37 +1,48 @@
 import React, {useState, useEffect} from "react";
 import { CardPostComponent } from "../components";
 import "./Home.css";
-import { getAllPost } from "../service/Post";
-import search from "../components";
-const post = [{
-  titulo: "titulo",
-  contenido: "contenido"
-}]
+import { getAllPost, findAllNombrePost } from "../service/Post";
+import { getAllComuna } from "../service/Comuna";
+/* import TextField from "@mui/material/TextField";
+ */
+
+/* import search from "../components"; */
 
 const Home = () => {
-  const [state, setState] = useState([]);
-  const [stateSearch, setStateSearch] = useState("");
+const [state, setState] = useState([]);
+const [stateSearch, setStateSearch] = useState([]);
 
 useEffect(()=>{
   getPost();
 },[])
 
 const getPost = async()=>{
-  const postBD = await getAllPost();
-  setState(postBD)
+  const postBD = await getAllPost()
+    setState(postBD)
+    setStateSearch(postBD)
 }
+
+/* const getComuna = async()=>{
+  const ComunaBD = await getAllComuna();
+  setStateComuna(ComunaBD)
+} */
+/* 
+const allNombrePost = async(nombre)=>{
+  const postBD = await findAllNombrePost(nombre)
+    setState(postBD)
+    getPost()
+} */
 
 
   return (
-    <body>
-      <h1>Headder</h1>
+    <div>
       <div class="grilla">
-        <CardPostComponent Posts={state} />
+        <CardPostComponent setPostEditado = {setState} Posts={state} searchName = {stateSearch} useEffects={useEffect} />
       </div>
       <div>
         <h2>Footer</h2>
       </div>
-    </body>
+    </div>
   );
 };
 
